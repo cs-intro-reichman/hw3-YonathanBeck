@@ -25,43 +25,74 @@ public class Algebra {
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int answer = 0;
+        for(int i = 0;i < x1;i++){
+            answer++;
+        }
+        for(int i = 0;i < x2;i++){
+            answer++;
+        }
+		return answer;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int answer = 0;
+        for(int i = 0;i < x1;i++){
+            answer++;
+        }
+        for(int i = 0;i < x2;i++){
+            answer--;
+        }
+		return answer;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int answer = 0;
+        for(int i = 0; i < x2; i++){
+            answer = plus(answer, x1);
+        }
+		return answer;
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		int answer = 1;
+        for(int i = 0; i < n ; i++){
+            answer = times(answer, x);
+        }
+		return answer;
 	}
 
 	// Returns the integer part of x1 / x2 
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int answer = 1;
+        int count = 0;
+        while(times(answer, x2) < x1){
+            answer++;
+            count = plus(count, x2);
+        }
+		if(times(answer, x2) == x1){
+            return answer;
+        }
+        else{
+            return --answer;
+        }
 	}
 
 	// Returns x1 % x2
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		return minus(x1, times(div(x1, x2), x2));
 	}	
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
+        for(int i = 0; i < x; i++){
+            if(times(i, i) >= x){
+                return i;
+            }
+        }
 		return 0;
 	}	  	  
 }
