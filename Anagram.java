@@ -7,6 +7,8 @@ public class Anagram {
 		System.out.println(isAnagram("Madam Curie","Radium came")); // true
 		System.out.println(isAnagram("Tom Marvolo Riddle","I am Lord Voldemort")); // true
 
+		System.out.println(isAnagram("12345678","13245678"));  // true
+
 		// Tests the preProcess function.
 		System.out.println(preProcess("What? No way!!!"));
 		
@@ -28,22 +30,44 @@ public class Anagram {
 
 	// Returns true if the two given strings are anagrams, false otherwise.
 	public static boolean isAnagram(String str1, String str2) {
-		// Replace the following statement with your code
-		return false;
-	}
+		str1 = preProcess(str1);
+    	str2 = preProcess(str2);
+	    if(str1.length() != str2.length()){
+	        return false;
+    	}
+	    while(str1.length() > 0){
+    	    boolean foundMatch = false;
+        	for(int i = 0; i < str2.length(); i++){
+            	if(str2.charAt(i) == str1.charAt(0)){
+                	str1 = str1.substring(1);
+    	            str2 = str2.substring(0, i) + str2.substring(i + 1);
+        	        foundMatch = true;
+            	    break;
+    	        }
+	        }
+	        if(!foundMatch){
+    	        return false;
+        	}
+  		}
+    	return true;
+		}
 	   
 	// Returns a preprocessed version of the given string: all the letter characters are converted
-	// to lower-case, and all the other characters are deleted, except for spaces, which are left
-	// as is. For example, the string "What? No way!" becomes "whatnoway"
+	// to lower-case, and all the other characters are deleted.
+	// For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-		// Replace the following statement with your code
-		return "";
+		str = str.toLowerCase().replaceAll("[^a-z]", "");
+		return str;
 	} 
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Replace the following statement with your code
-		return "";
+		int rand = (int)(Math.random()*str.length()); 
+		for(int i = 0; i < str.length(); i++){
+			str = str.substring(0, rand) + str.substring(rand + 1 , str.length()) + str.charAt(rand);
+			rand = (int)(Math.random()*str.length());
+		}
+		return str;
 	}
 }
